@@ -1,49 +1,56 @@
 import random
 from datetime import datetime, timedelta
 
-levels = ["INFO", "WARNING", "ERROR"]
 
-messages = {
-    "INFO": [
-        "Login Success",
-        "File Uploaded",
-        "Scheduled Backup Completed",
-        "User Access Granted"
-    ],
-    "WARNING": [
-        "CPU Usage High",
-        "Disk Space Low",
-        "Memory Usage Warning"
-    ],
-    "ERROR": [
-        "Failed Login",
-        "Database Connection Failed",
-        "Server Timeout",
-        "Unauthorized Access Attempt"
-    ]
-}
+def generate_logs():
 
-start_time = datetime.now()
+    levels = ["INFO", "WARNING", "ERROR"]
 
-with open("logs/sample.log", "w", encoding="utf-8") as f:
+    messages = {
+        "INFO": [
+            "Login Success",
+            "File Uploaded",
+            "Scheduled Backup Completed",
+            "User Access Granted"
+        ],
+        "WARNING": [
+            "CPU Usage High",
+            "Disk Space Low",
+            "Memory Usage Warning"
+        ],
+        "ERROR": [
+            "Failed Login",
+            "Database Connection Failed",
+            "Server Timeout",
+            "Unauthorized Access Attempt"
+        ]
+    }
 
-    for i in range(100):
+    start_time = datetime.now()
 
-        log_time = start_time + timedelta(
-            seconds = i * random.randint(5, 30)
-        )
+    with open("logs/sample.log", "w", encoding="utf-8") as f:
 
-        level = random.choices(
-            levels,
-            weights = [70, 20, 10]
-        )[0]
+        for i in range(100):
 
-        message = random.choice(messages[level])
+            log_time = start_time + timedelta(
+                seconds = i * random.randint(5, 30)
+            )
 
-        user_id = f"user{random.randint(100,999)}"
+            level = random.choices(
+                levels,
+                weights = [70, 20, 10]
+            )[0]
 
-        log = f"{log_time} | {level} | {message} | {user_id}"
+            message = random.choice(messages[level])
 
-        f.write(log + "\n")
+            user_id = f"user{random.randint(100,999)}"
 
-print("ログ生成完了")
+            log = f"{log_time} | {level} | {message} | {user_id}"
+
+            f.write(log + "\n")
+
+    print("ログ生成完了")
+
+
+if __name__ == "__main__":
+    generate_logs()
