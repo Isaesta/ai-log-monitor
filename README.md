@@ -36,3 +36,8 @@ AIログ監視システム。
 
 \- GitHub
 
+
+
+\## 資格
+
+\- JDLA Deep Learning for GENERAL 2026 #3 合格
